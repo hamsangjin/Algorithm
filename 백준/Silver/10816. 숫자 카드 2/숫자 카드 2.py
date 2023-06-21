@@ -1,7 +1,7 @@
 import sys
 
 N = int(sys.stdin.readline().strip())
-N_s = sorted(list(map(int, sys.stdin.readline().strip().split())))
+N_s = list(map(int, sys.stdin.readline().strip().split()))
 M = int(sys.stdin.readline().strip())
 M_s = list(map(int, sys.stdin.readline().strip().split()))
 
