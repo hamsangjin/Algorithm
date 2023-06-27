@@ -5,7 +5,11 @@ def solution(array):
     max_count = max(counter.values())  # 등장 횟수의 최댓값을 찾음
 
     # 최빈값이 여러 개인지 확인
-    mode_values = [num for num, count in counter.items() if count == max_count]
+    mode_values = []
+    for num, count in counter.items():
+        if count == max_count:
+            mode_values.append(num)
+            
     if len(mode_values) > 1:
         return -1  # 최빈값이 여러 개면 -1 반환
 
