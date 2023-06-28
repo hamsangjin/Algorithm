@@ -26,7 +26,7 @@ def solution(queue1, queue2):
             sum2 -= tmp
             answer += 1
 
-        if answer > len(queue1)*4:
+        if answer > len(queue1)**2:
             return -1
 
     return answer
