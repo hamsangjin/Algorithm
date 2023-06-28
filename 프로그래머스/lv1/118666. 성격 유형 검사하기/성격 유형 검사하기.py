@@ -6,7 +6,9 @@ def solution(survey, choices):
     categories = ['RT', 'CF', 'JM', 'AN']
     sH = defaultdict(int)
 
-    for i in range(len(survey)):
+    n = len(survey)
+
+    for i in range(n):
         if choices[i] <= 3:
             sH[survey[i][0]] += points[str(choices[i])]
 
@@ -23,5 +25,3 @@ def solution(survey, choices):
             answer += sort_[0]
 
     return answer
-
-print(solution(["AN", "CF", "MJ", "RT", "NA"], [5, 3, 2, 7, 5]))
