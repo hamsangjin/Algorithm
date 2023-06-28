@@ -1,17 +1,12 @@
 def solution(rank, attendance):
     n = len(rank)
-
+    answer =0
     r_a = []
-    answer = []
-    for i in range(n):
-        r_a.append([rank[i], attendance[i]])
-    
-    cnt = 0
-    for x in sorted(r_a, key= lambda x: x[0]):
-        if x[1] == True:
-            answer.append(r_a.index(x))
-            cnt += 1
-        if cnt == 3:
-            break
 
-    return 10000 * answer[0] + 100 * answer[1] + answer[2]
+    for i in range(n):
+        if attendance[i]:
+            r_a.append([rank[i], i])
+
+    r_a.sort(key = lambda v : v[0])
+
+    return 10000 * r_a[0][1] + 100 * r_a[1][1] + r_a[2][1]
