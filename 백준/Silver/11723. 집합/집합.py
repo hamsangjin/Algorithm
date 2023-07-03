@@ -1,29 +1,30 @@
 import sys
 
-m = int(sys.stdin.readline())
-S = set()
+M = int(sys.stdin.readline().strip())
 
-for _ in range(m):
-    temp = sys.stdin.readline().strip().split()
-    
-    if len(temp) == 1:
-        if temp[0] == "all":
-            S = set([i for i in range(1, 21)])
-        else:
-            S = set()
-    
+S = []
+
+for _ in range(M):
+  commands= sys.stdin.readline().strip().split()
+  if len(commands) == 2:
+    commands[1] = int(commands[1])
+  if commands[0] == 'add':
+    if commands[1] not in S:
+      S.append(commands[1])
+  elif commands[0] == 'remove':
+    if commands[1] in S:
+      S.pop(S.index(commands[1]))
+  elif commands[0] == 'check':
+    if commands[1] in S:
+      print(1)
     else:
-        func, x = temp[0], temp[1]
-        x = int(x)
-
-        if func == "add":
-            S.add(x)
-        elif func == "remove":
-            S.discard(x)
-        elif func == "check":
-            print(1 if x in S else 0)
-        elif func == "toggle":
-            if x in S:
-                S.discard(x)
-            else:
-                S.add(x)
+      print(0)
+  elif commands[0] == 'toggle':
+    if commands[1] in S:
+      S.pop(S.index(commands[1]))
+    else:
+      S.append(commands[1])
+  elif commands[0] == 'all':
+    S = list(range(1, 21))
+  elif commands[0] == 'empty':
+    S.clear()
