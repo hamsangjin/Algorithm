@@ -1,14 +1,23 @@
-N , M = map(int,input().split())
-arr_1 = set()
-arr_2 = set()
+import sys
 
+N, M = map(int, sys.stdin.readline().strip().split())
+
+set1 = set()
+set2 = set()
+
+# 듣도 못한 사람
 for _ in range(N):
-    arr_1.add(input())
+    set1.add(sys.stdin.readline().strip())
+
+# 보도 못한 사람
 for _ in range(M):
-    arr_2.add(input())
+    set2.add(sys.stdin.readline().strip())
 
-arr = sorted(list(arr_1 & arr_2))
-print(len(arr))
+# 듣보잡들
+result = sorted(list(set1 & set2))
 
-for i in arr:
-    print(i)
+print(len(result))
+
+# 듣보잡 이름
+for x in result:
+    print(x)
