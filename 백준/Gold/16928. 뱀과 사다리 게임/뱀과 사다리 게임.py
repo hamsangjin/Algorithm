@@ -53,7 +53,7 @@ while flag:
           Q.append(ladders[nx])
 
         # 뱀 칸인지 확인
-        if nx in snakes.keys():
+        elif nx in snakes.keys():
           ch[snakes[nx]] = 1
           Q.append(snakes[nx])
         
