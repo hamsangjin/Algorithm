@@ -4,16 +4,17 @@ class Solution {
     }
     
     public int solution(int n) {
-        int odd_sum = 0, even_sum = 0;
-        
-        for(int i = 1; i <= n; i++){
-            if (i % 2 == 0){
-                even_sum += get_Square(i);
-            } else{
-                odd_sum += i;
+        int answer = 0;
+        if (n % 2 == 0){
+            for(int i = 2; i <= n; i += 2){
+                answer += get_Square(i);
+            }
+        } else{
+            for(int i = 1; i <= n; i += 2){
+                answer += i;
             }
         }
         
-        return (n % 2 == 0) ? even_sum : odd_sum;
+        return answer;
     }
 }
