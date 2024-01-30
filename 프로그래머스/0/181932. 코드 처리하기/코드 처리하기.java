@@ -4,15 +4,14 @@ class Solution {
         int mode = 0;
         
         for(int i = 0; i < code.length(); i++){
-            if (code.charAt(i) == '1'){
+            char x = code.charAt(i);
+            if (x == '1'){
                 mode = mode == 1 ? 0 : 1;
                 continue;
             }
             
-            if (mode == 0){
-                answer += (i % 2 == 0) ? code.charAt(i) : "";
-            } else if (mode == 1){
-                answer += (i % 2 == 1) ? code.charAt(i) : "";
+            if (i % 2 == mode){
+                answer += x;
             }
             
         }
