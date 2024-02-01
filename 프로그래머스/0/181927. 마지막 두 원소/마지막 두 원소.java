@@ -9,11 +9,7 @@ class Solution {
             answer[i] = num_list[i];
         }
         
-        if (num_list[n - 1] > num_list[n - 2]){
-            answer[n] = num_list[n - 1] - num_list[n - 2];
-        } else{
-            answer[n] = num_list[n - 1] * 2;
-        }
+        answer[n] = (num_list[n - 1] > num_list[n - 2]) ? (num_list[n - 1] - num_list[n - 2]) : num_list[n - 1] * 2;
         
         return answer;
     }
