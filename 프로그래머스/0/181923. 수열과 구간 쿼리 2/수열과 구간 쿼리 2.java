@@ -1,22 +1,19 @@
+import java.util.Arrays;
 class Solution {
     public int[] solution(int[] arr, int[][] queries) {
         int[] answer = new int[queries.length];
+        Arrays.fill(answer, -1);
         
         for(int i = 0; i < queries.length; i++){
-            int cnt = 0, min_num = 1000001;
             
-            // s부터 e까지의 범위에서 찾기
-            for(int j = queries[i][0]; j <= queries[i][1]; j++){
-                // k보다 크냐 ?
-                if (arr[j] > queries[i][2]){
-                    // 조건에 맞는 값이 있나 확인
-                    cnt += 1;
-                    // 조건에 만족하면서 가장 낮은 값 찾기
-                    min_num = Integer.min(min_num, arr[j]);
+            int[] q = queries[i];
+            int s = q[0], e = q[1], k = q[2];
+            
+            for(int j = s; j <= e; j++){
+                if (arr[j] > k){
+                    answer[i] = (answer[i] == -1) ? arr[j] : Math.min(answer[i], arr[j]);
                 }
             }
-            // 조건에 맞는 값이 있는지 여부에 따른 값 추가
-            answer[i] = (cnt != 0) ? min_num : -1;
         }
         return answer;
     }
