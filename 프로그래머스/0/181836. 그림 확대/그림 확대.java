@@ -10,18 +10,13 @@ class Solution {
             String x = "";
             
             for(char ch : str.toCharArray()){
-                if (ch == 'x'){
-                    x += "x".repeat(k);
-                } else{
-                    x += ".".repeat(k);
-                }
+                x += (ch == 'x') ? "x".repeat(k) : ".".repeat(k);
             }
-            
             for(int j = 0; j < k; j++){
                 answer.add(x);
             }
-
         }
+        
         return answer.toArray(new String[answer.size()]);
     }
 }
