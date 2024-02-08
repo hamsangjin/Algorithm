@@ -3,7 +3,7 @@ import java.util.*;
 class Solution {
     public String solution(String my_string, int[] indices) {
         
-        char[] str_list = my_string.toCharArray();
+        String[] str_list = my_string.split("");
         Arrays.sort(indices);
         String answer = "";
         
@@ -11,7 +11,7 @@ class Solution {
             
             // indices에 포함 안 된 인덱스
             if (i != indices[j]){
-                answer += Character.toString(str_list[i]);
+                answer += str_list[i];
             
             // indices에 포함된 인덱스
             } else if(j < indices.length-1){
