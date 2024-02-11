@@ -4,9 +4,9 @@ class Solution {
     public int[] solution(int[] arr) {
         Stack<Integer> stk = new Stack<>();
         
-        for(int i = 0; i < arr.length; i++){
-            if(stk.empty() || stk.peek() != arr[i]){
-                stk.push(arr[i]);
+        for(int num : arr){
+            if(stk.empty() || stk.peek() != num){
+                stk.push(num);
             } else{
                 stk.pop();
             }
