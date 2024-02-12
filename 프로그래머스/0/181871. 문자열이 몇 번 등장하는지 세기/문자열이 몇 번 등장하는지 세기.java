@@ -1,15 +1,10 @@
-import java.util.*;
-
 class Solution {
     public int solution(String myString, String pat) {
-        int answer = 0, i = 0;
+        int answer = 0;
         
-        while(i < myString.length()){
-            if(myString.indexOf(pat, i) != -1){
-                answer++;                        
-                i = myString.indexOf(pat, i) + 1; 
-            } else{
-                i++;
+        for(int i = 0; i < myString.length(); i++) {
+            if(myString.substring(i).startsWith(pat)){
+                answer++;
             }
         }
         
