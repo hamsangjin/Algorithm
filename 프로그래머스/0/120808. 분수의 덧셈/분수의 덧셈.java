@@ -5,9 +5,10 @@ class Solution {
         int denom = denom1 * denom2;
         int max = 1;  
         
-        for(int i = 1; i <= numer && i <= denom; i++){
+        for(int i = Math.min(numer, denom); i >= 1; i--){
             if(numer%i==0 && denom%i==0){
                 max = i;
+                break;
             }
         }
         
