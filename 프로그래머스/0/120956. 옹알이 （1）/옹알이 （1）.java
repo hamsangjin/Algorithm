@@ -3,10 +3,8 @@ class Solution {
         int answer = 0;
         
         for(String b : babbling){
-            String str = b.replace("aya", ".").replace("ye", ".").replace("woo", ".").replace("ma", "");
-            if(str.equals(".") || str.equals("..") || str.equals("...") || str.equals("....") || str.equals("")){
-                answer += 1;
-            }
+            String str = b.replace("aya", ".").replace("ye", ".").replace("woo", ".").replace("ma", "").replace(".", "");
+            if(str.equals(""))  answer += 1;
         }
         return answer;
     }
