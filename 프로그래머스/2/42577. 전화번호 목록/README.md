@@ -1,6 +1,6 @@
 # [level 2] 전화번호 목록 - 42577 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/42577) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/42577?language=java) 
 
 ### 성능 요약
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 02월 27일 22:03:47
+2024년 02월 27일 22:03:51
 
 ### 문제 설명
 

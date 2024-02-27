@@ -1,13 +1,17 @@
-import java.util.Arrays;
-
+import java.util.*;
 class Solution {
-    public boolean solution(String[] phoneBook) {
-        Arrays.sort(phoneBook);
+    public boolean solution(String[] phone_book) {
         
-        for (int i = 0; i < phoneBook.length-1; i++) {
-            if(phoneBook[i+1].startsWith(phoneBook[i]))   return false;
+        String temp = "";
+        ArrayList<String> list = new ArrayList<>(Arrays.asList(phone_book));
+        
+        for(String phone : phone_book){
+            temp = "";
+            for(String x : phone.split("")){
+                temp += x;
+                if(!phone.equals(temp) && list.contains(temp))   return false; 
+            }
         }
-        
         return true;
     }
 }
