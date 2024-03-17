@@ -1,22 +1,18 @@
-import java.util.*;
-
 class Solution {
     public int[] solution(String s) {
-        String temp = "";
-        int zero_cnt = 0, trans_cnt = 0;
+        int[] answer = new int[2];
+        int temp;
         
-        while(!s.equals("1")){
-            temp = "";
+        while(!s.equals("1") ) {
+            answer[1] += s.length();
             
-            for(String str : s.split("")){
-                if(str.equals("1"))   temp += str;
-                else zero_cnt += 1;
-            }
+            s = s.replaceAll("0", "");
+            answer[1] -= s.length();
             
-            s = Integer.toBinaryString(temp.length());
-            trans_cnt ++;
+            s = Integer.toBinaryString(s.length());
+            answer[0]++;
+            
         }
-        
-        return new int[]{trans_cnt, zero_cnt};
+        return answer;  
     }
 }
