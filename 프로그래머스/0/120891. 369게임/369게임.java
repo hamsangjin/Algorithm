@@ -1,12 +1,14 @@
+import java.util.*;
+
 class Solution {
     public int solution(int order) {
         int answer = 0;
+        ArrayList<String> arr = new ArrayList<>(Arrays.asList("3", "6", "9"));
         
         for(String str : Integer.toString(order).split("")){
-            if(str.equals("3") || str.equals("6") || str.equals("9")){
-                answer += 1;
-            }
+            if(arr.contains(str))   answer += 1;
         }
+        
         return answer;
     }
 }
