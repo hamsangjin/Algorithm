@@ -10,6 +10,7 @@ class Solution {
             String s1 = toBinary(arr1[i]);
             String s2 = toBinary(arr2[i]);
             
+            // 각각 자리수에 맞게 표시
             for(int j = n - s1.length(), k = 0; j < n; j++, k++){
                 if(s1.charAt(k) == '1'){
                     map[i][j] = "#";
@@ -21,6 +22,10 @@ class Solution {
                     map[i][j] = "#";
                 }
             }
+        }
+        
+        for(int i = 0; i < map.length; i++){
+            System.out.println(Arrays.toString(map[i]));
         }
         
         for(int i = 0; i < n; i++){
