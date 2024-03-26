@@ -1,7 +1,7 @@
 import java.util.*;
+
 class Solution {
     public String[] solution(String[] players, String[] callings) {
-        
         
         HashMap<String, Integer> rank = new HashMap<>();
         for(int i = 0; i < players.length; i++){
@@ -13,10 +13,11 @@ class Solution {
             swap1(rank, players, n, n-1);
             swap2(players, n, n-1);
         }
+        
         return players;
     }
     
-    public static void swap1(HashMap<String, Integer> map, String[] players,  int i, int j){
+    public static void swap1(HashMap<String, Integer> map, String[] players, int i, int j){
         Integer temp = map.get(players[i]);
         map.put(players[i], map.get(players[j]));
         map.put(players[j], temp);
