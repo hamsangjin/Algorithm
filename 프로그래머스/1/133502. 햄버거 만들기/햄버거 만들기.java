@@ -1,24 +1,31 @@
+// 햄버거를 포장해야한다.
+// 햄버거는 빵(1) - 야채(2) - 고기(3) - 빵(1) 순으로만 포장한다.
+// 포장할 수 있는 개수는 몇 개냐 ?
+
+// 1
+// 3
+// 2
+// 1
 import java.util.*;
-class Solution {
+
+class Solution {  
     public int solution(int[] ingredient) {
-        int result = 0;
-		Stack<Integer> stack = new Stack<>();
-		for (int in : ingredient) {
-			stack.push(in);
-			if (stack.size() >= 4) {
-				int size = stack.size();
-				if(stack.get(size - 1) == 1
-                   && stack.get(size - 2) == 3
-                   && stack.get(size - 3) == 2
-                   && stack.get(size - 4) == 1) {
-					result++;
-					stack.pop();
-					stack.pop();
-					stack.pop();
-					stack.pop();
-				}
-			}
-		}
-		return result;
+        Stack<Integer> st = new Stack<>();
+        int answer = 0;
+        for(int x : ingredient){
+            st.push(x);
+            int n = st.size();
+            if(n >= 4){
+                if(st.get(n-1) == 1 && st.get(n-2) == 3 && st.get(n-3) == 2 && st.get(n-4) == 1){
+                    answer ++;
+                    st.pop();
+                    st.pop();
+                    st.pop();
+                    st.pop();
+                }
+            }
+        }
+        
+        return answer;
     }
 }
