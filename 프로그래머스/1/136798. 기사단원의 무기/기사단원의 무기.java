@@ -3,15 +3,21 @@ class Solution {
         int answer = 0;
         
         for(int i = 1; i <= number; i++){
-            int temp = 0;
-            for (int j = 1; j*j <= i; j++){
-                if(j*j==i)      temp++;
-                else if(i%j==0) temp+=2;
-            }
-            
-            answer += (temp > limit) ? power : temp;
+            int cnt = divisor(i);
+            answer += (cnt > limit) ? power : cnt;
         }
             
         return answer;
+    }
+    
+    public static int divisor(int n){
+        int temp = 0;
+        
+        for (int i = 1; i*i <= n; i++){
+            if(i*i==n)      temp++;
+            else if(n%i==0) temp+=2;
+        }
+        
+        return temp;
     }
 }
