@@ -14,7 +14,7 @@ class Solution {
         // number의 원소의 합은 10이므로,
         // discount 배열의 원소를 0~9, 1~10, 2~11 이런 식으로 확인
         for(int i = 0; i < discount.length-9; i++){
-            // i ~ i+10까지의 품목의 개수 구하기
+            // i ~ i+9까지의 품목의 개수 구하기
             HashMap<String, Integer> tempMap = new HashMap<>();
             for(int j = i; j < i+10; j++){
                 tempMap.put(discount[j], tempMap.getOrDefault(discount[j], 0) + 1);
