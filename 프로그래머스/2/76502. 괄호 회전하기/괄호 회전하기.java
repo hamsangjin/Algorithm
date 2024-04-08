@@ -9,14 +9,13 @@ class Solution {
         for(int i = 0; i < s.length(); i++){
             st.clear();
             ns = shift(ns);
-            
             for(String x : ns.split("")){
                 check(x, "(", ")");
                 check(x, "[", "]");
                 check(x, "{", "}");
             }
             
-            if(st.size() == 0) answer++;
+            if(st.isEmpty()) answer++;
         }
         return answer;
     }
