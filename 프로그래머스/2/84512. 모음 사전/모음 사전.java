@@ -23,20 +23,9 @@ class Solution {
     }
     
     public int solution(String word) {
-        int answer = 0;
         list = new ArrayList<>();
         dfs("");
         
-		// list에 저장된 값을 하나씩 탐색
-        for(int i = 1; i < list.size(); i++) {
-			// 찾으려는 단어와 같다면
-            if(list.get(i).equals(word)) {
-				// 해당 위치의 인덱스를 저장
-                answer = i;
-                break;
-            }
-        }
-        
-        return answer;
+        return list.indexOf(word);
     }
 }
