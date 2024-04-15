@@ -1,10 +1,10 @@
 # [level 1] 신고 결과 받기 - 92334 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/92334) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/92334?language=java) 
 
 ### 성능 요약
 
-메모리: 74.4 MB, 시간: 0.14 ms
+메모리: 79.8 MB, 시간: 0.17 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 04월 15일 21:45:51
+2024년 04월 15일 22:24:08
 
 ### 문제 설명
 

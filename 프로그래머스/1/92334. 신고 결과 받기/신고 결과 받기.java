@@ -6,11 +6,13 @@ class Solution {
         
         // hashMap<String, Set<String> 묶어서 저장 - set으로 중복처리
         Map<String, Set<String>> map = new HashMap<>();
-        
-        
+    
         for(String id : id_list){
             map.put(id, new HashSet<>());
         }
+        
+        // 이부분 getOrDefault 사용 방법 !?
+        // 누가 누구를 신고했는지 저장
         for(String r : report){
             String[] temp = r.split(" ");
             map.get(temp[0]).add(temp[1]);
@@ -24,7 +26,7 @@ class Solution {
             }
         }
         
-        // key값 별로 신고한 사람들이 처리된 횟수 구하기
+        // key값 별로 신고한 사람들이 처리된 횟수 확인해서 answer에 반영
         for(int i = 0; i < id_list.length; i++){
             for(String str : map.get(id_list[i])){
                 if(reportCountMap.get(str) >= k)    answer[i] ++;
