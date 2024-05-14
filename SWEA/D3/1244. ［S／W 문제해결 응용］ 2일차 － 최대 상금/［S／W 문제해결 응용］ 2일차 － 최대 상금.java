@@ -1,9 +1,9 @@
 import java.io.*;
 
 public class Solution {
-	static int max;
-	static int changeCnt;
+	static int max, cnt;
 	static char[] nums;
+	
 	public static void main(String[] args) {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
@@ -13,26 +13,28 @@ public class Solution {
 				String[] temp = br.readLine().split(" ");
 				
 				nums = temp[0].toCharArray();
-				changeCnt = Integer.parseInt(temp[1]);
+				cnt = Integer.parseInt(temp[1]);
 				max = Integer.MIN_VALUE;
 				
-				dfs(0, 0);
+				dfs(0);
 
 				System.out.printf("#%d %d\n", i, max);
 			}
 		} catch (IOException e) {}
 	}
 	
-	public static void dfs(int start, int cnt) {
-		if(cnt == changeCnt) {
+	public static void dfs(int start) {
+		if(cnt == 0) {
 			max = Math.max(max, Integer.parseInt(new String(nums)));
 			return;
 		}
 		for(int i = start; i < nums.length; i++) {
 			for(int j = i + 1; j < nums.length; j++) {
 				swap(nums, i, j);
-				dfs(i, cnt+1);
+				cnt -= 1;
+				dfs(i);
 				swap(nums, i, j);
+				cnt += 1;
 			}
 		}
 	}
