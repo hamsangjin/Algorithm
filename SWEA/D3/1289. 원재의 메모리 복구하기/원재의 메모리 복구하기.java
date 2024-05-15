@@ -8,14 +8,13 @@ public class Solution {
 			int T = Integer.parseInt(br.readLine());
 			for(int t = 1; t <= T; t++) {
 				String[] num = br.readLine().split("");
-				String[] start = new String[num.length];
-				for(int i = 0; i < num.length; i++)	start[i] = "0";
+				String state = "0";
 				
 				int cnt = 0;
 				for(int i = 0; i < num.length; i++) {
-					if(!start[i].equals(num[i])) {
+					if(!state.equals(num[i])) {
 						cnt++;
-						for(int j = i; j < num.length; j++)	start[j] = num[i];
+						state = num[i];
 					}
 				}
 				
