@@ -18,7 +18,8 @@ public class Solution {
 				}
 				
 				int max = 1;
-				for(int l = 2; l <= 100; l++) {
+				Loop:
+				for(int l = 100; l >= 2; l--) {
 					for (int i = 0; i < 100; i++) {
 						for (int j = 0; j <= 100-l; j++) {
 							boolean flag1 = true;
@@ -27,8 +28,14 @@ public class Solution {
 								if(!words[i][j+k].equals(words[i][j+l-1-k]))	flag1 = false;
 								if(!words[j+k][i].equals(words[j+l-1-k][i]))	flag2 = false;
 							}
-							if(flag1) max = l;
-							if(flag2) max = l;
+							if(flag1) {
+								max = l;
+								break Loop;
+							}
+							if(flag2) {
+								max = l;
+								break Loop;
+							}
 						}
 					}
 				}
