@@ -1,43 +1,27 @@
 class Solution {
     public int[][] solution(int n) {
+        int[] dr = {-1, 0, 1, 0};
+        int[] dc = {0, 1, 0, -1};
         int[][] answer = new int[n][n];
         
-        int x = 0 , y = 0, dir = 0, num = 1;
+        int r = 0, c = 0;
+        int d = 1, num = 1;
         
-        while(num <= n*n){
-            answer[x][y] = num++;
-            
-            if (dir == 0){
-                if (y == n-1 || answer[x][y+1] != 0){
-                    dir = 1;
-                    x += 1;
-                } else{
-                    y += 1;
-                }
-            } else if (dir == 1){
-                if (x == n-1 || answer[x+1][y] != 0){
-                    dir = 2;
-                    y -= 1;
-                } else{
-                    x += 1;
-                }
-            } else if (dir == 2){
-                if (y == 0 || answer[x][y-1] != 0){
-                    dir = 3;
-                    x -= 1;
-                } else{
-                    y -= 1;
-                }
-            } else if (dir == 3){
-                if (x == 0 || answer[x-1][y] != 0){
-                    dir = 0;
-                    y += 1;
-                } else{
-                    x -= 1;
-                }
+        while(n*n > num){
+            int nr = r + dr[d];
+            int nc = c + dc[d];
+
+            if(nr < 0 || nc < 0 || nr >= n || nc >= n || answer[nr][nc] != 0){
+                d = (d+1) % 4;
+                continue;
             }
+            
+            answer[r][c] = num++;
+            r = nr;
+            c = nc;
         }
-        System.out.println(answer);
+        
+        answer[r][c] = num;
         return answer;
     }
 }
