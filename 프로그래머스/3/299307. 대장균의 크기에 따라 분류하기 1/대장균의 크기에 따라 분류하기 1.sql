@@ -7,4 +7,4 @@ select ID,
             else 'HIGH'
         END) as SIZE
 from ECOLI_DATA
-order by ID;
+order BY ID;
