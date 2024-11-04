@@ -18,6 +18,7 @@ public class Main {
                 sign[i][j] = signInput.charAt(idx++);
             }
         }
+
         nums = new int[N];
         dfs(0);
     }
@@ -36,15 +37,13 @@ public class Main {
     }
 
     public static boolean check(int depth) {
+        int sum = 0;
+        for(int i = 0; i <= depth; i++)     sum += nums[i];
+
         for (int i = 0; i <= depth; i++) {
-            int sum = 0;
-            for (int j = i; j <= depth; j++) {
-                sum += nums[j];
-                // 부호 맞는지 검사
-                if (sign[i][j] != (sum == 0 ? '0' : (sum > 0 ? '+' : '-'))) {
-                    return false;
-                }
-            }
+            if (sign[i][depth] != (sum == 0 ? '0' : (sum > 0 ? '+' : '-')))     return false;
+
+            sum -= nums[i];
         }
         return true;
     }
