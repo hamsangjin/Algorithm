@@ -12,18 +12,18 @@ public class Solution {
             int M = Integer.parseInt(st.nextToken());
             int K = Integer.parseInt(st.nextToken());
 
-            int[] arr = new int[N];
+            List<Integer> list = new ArrayList<>();
             st = new StringTokenizer(br.readLine());
-            for(int i = 0; i < N; i++)		arr[i] = Integer.parseInt(st.nextToken());
-            Arrays.sort(arr);
+            for(int i = 0; i < N; i++)		list.add(Integer.parseInt(st.nextToken()));
+            Collections.sort(list);
             
             int b = 0;
             String ans = "Possible";
 			for(int i = 0; i < N; i++){
-                // arr[i]초가 지나면 만들 수 있는 붕어빵 개수
-                b = (arr[i] / M) * K;
+                // list.get(i)초가 지나면 만들 수 있는 붕어빵 개수
+                b = (list.get(i) / M) * K;
                 
-                // arr[i]초가 됐을 때 지금까지 왔던 인원 수(i) + 현재 손님(1)만큼 붕어빵 개수를 뺐을 때,
+                // list.get(i)초가 됐을 때 지금까지 왔던 인원 수(i) + 현재 손님(1)만큼 붕어빵 개수를 뺐을 때,
                 // 붕어빵 개수가 음수가 된다면 붕어빵을 제공할 수 없다는 뜻
                 // ans에 Impossible을 저장하고 for문 탈출
                 if(b-i-1 < 0){
