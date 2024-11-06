@@ -1,41 +1,39 @@
+import java.util.*;
 import java.io.*;
 
-public class Solution {
-	static int n, l, max;
-	static int[][] tk;
-	public static void main(String[] args) {
+class Solution{
+    static int N, L, ans;
+    static int[][] tk;
+	public static void main(String args[]) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		
-		try {
-			int T = Integer.parseInt(br.readLine());
-			for(int t = 1; t <= T; t++) {
-				String[] nl = br.readLine().split(" ");
-				n = Integer.parseInt(nl[0]);
-				l = Integer.parseInt(nl[1]);
-				max = 0;
-				
-				tk = new int[n][2];
-				for(int i = 0; i < n; i++) {
-					String[] temp = br.readLine().split(" ");
-					tk[i][0] = Integer.parseInt(temp[0]);
-					tk[i][1] = Integer.parseInt(temp[1]);
-				}
-				
-				dfs(0, 0, 0);
-				
-				System.out.printf("#%d %d\n", t, max);
-			}
-		} catch (IOException e) {}
+        
+        int T = Integer.parseInt(br.readLine());
+        for(int t = 1; t <= T; t++){
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            N = Integer.parseInt(st.nextToken());
+            L = Integer.parseInt(st.nextToken());
+            
+            tk = new int[N][2];
+            for(int i = 0; i < N; i++){
+                st = new StringTokenizer(br.readLine());
+                tk[i][0] = Integer.parseInt(st.nextToken());
+                tk[i][1] = Integer.parseInt(st.nextToken());
+            }
+            
+            ans = Integer.MIN_VALUE;
+            dfs(0, 0, 0, 0);
+            
+            System.out.printf("#%d %d\n", t, ans);
+        }
 	}
-	public static void dfs(int cnt, int taste, int kcal) {
-		if (kcal > l)
-			return;
-		if (cnt == n) {
-			max = Math.max(max, taste);
-			return;
-		}
-		
-		dfs(cnt + 1, taste + tk[cnt][0], kcal + tk[cnt][1]); 	// 해당 재료 선택 O
-		dfs(cnt + 1, taste, kcal); 								// 해당 재료 선택 x
-	}
+    
+    public static void dfs(int depth, int idx, int point, int kal){
+        if(kal > L || depth > N)		return; 	
+        
+        ans = Math.max(ans, point);
+        
+        for(int i = idx; i < N; i++){
+            dfs(depth+1, i+1, point + tk[i][0], kal + tk[i][1]);
+        }
+    }
 }
