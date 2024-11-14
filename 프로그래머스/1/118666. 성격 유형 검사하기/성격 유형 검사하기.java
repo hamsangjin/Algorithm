@@ -2,25 +2,9 @@ import java.util.*;
 
 class Solution {
     public String solution(String[] survey, int[] choices) {
-        String answer = "";
-        
-        /*
-        1번 지표	라이언형(R), 튜브형(T)
-        2번 지표	콘형(C), 프로도형(F)
-        3번 지표	제이지형(J), 무지형(M)
-        4번 지표	어피치형(A), 네오형(N)
-        */
-        
+    
         // 선택에 따른 성격 유형 점수 저장
-        Map<Integer, Integer> scores = Map.of(
-                1, 3,
-                2, 2,
-                3, 1,
-                4, 0,
-                5, 1,
-                6, 2,
-                7, 3
-        );
+        int[] scores = {0, 3, 2, 1, 0, 1, 2, 3};
         
         // 유형별 점수 저장
         Map<String, Integer> categories = new HashMap<>();
@@ -31,12 +15,19 @@ class Solution {
             int choice = choices[i];
             
             // 비동의 선택
-            if(choice <= 3)         categories.put(c1, categories.getOrDefault(c1, 0) + scores.get(choice));
+            if(choice <= 3)     categories.put(c1, categories.getOrDefault(c1, 0) + scores[choice]);
             // 동의 선택
-            else if(choice >= 4)    categories.put(c2, categories.getOrDefault(c2, 0) + scores.get(choice));
+            else                categories.put(c2, categories.getOrDefault(c2, 0) + scores[choice]);
         }
         
         System.out.println(categories);
+        
+        /*
+        1번 지표	라이언형(R), 튜브형(T)
+        2번 지표	콘형(C), 프로도형(F)
+        3번 지표	제이지형(J), 무지형(M)
+        4번 지표	어피치형(A), 네오형(N)
+        */
         
         // T가 R보다 큰 경우에만 T로 하고, 같거나(사전순) 작은 경우엔 R로 설정
         String rt = (categories.getOrDefault("R", 0) < categories.getOrDefault("T", 0)) ? "T" : "R";
