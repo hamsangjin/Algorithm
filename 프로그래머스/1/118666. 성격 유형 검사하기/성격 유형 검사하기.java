@@ -2,45 +2,48 @@ import java.util.*;
 
 class Solution {
     public String solution(String[] survey, int[] choices) {
-        
-        // 선택과 매칭되는 점수 정의
-        HashMap<Integer, Integer> scores = new HashMap<Integer, Integer>();
-        // for(int i = 1; i <= 7; i++){
-        //     if(i <= 3)      scores.put(i, 4-i);
-        //     if(i >= 5)      scores.put(i, i-4);
-        // }
-        scores.put(1, 3);scores.put(2, 2);scores.put(3, 1);scores.put(4, 0);
-        scores.put(5, 1);scores.put(6, 2);scores.put(7, 3);
-        
-        // 유형별 누적 점수 저장
-        HashMap<String, Integer> categories = new HashMap<String, Integer>();
-        for(String category : new String[]{"R", "T", "C", "F", "J", "M", "A", "N"}){
-            categories.put(category, 0);
-        }
-        
-        for(int i = 0; i < survey.length; i++){
-            // 유형 두 개 나누기
-            String c1 = "" + survey[i].charAt(0);
-            String c2 = "" + survey[i].charAt(1);
-            
-            // c1 유형에 더해지는 선택이냐?
-            if(choices[i] <= 3){
-                // 그렇다면 c1의 점수를 꺼내서 해당 선택과 매칭되는 점수를 더해라
-                categories.put(c1, categories.get(c1) + scores.get(choices[i]));
-            // c2 유형에 더해지는 선택이냐 ?
-            } else if(choices[i] >= 3){
-                // 그렇다면 c2의 점수를 꺼내서 해당 선택과 매칭되는 점수를 더해라
-                categories.put(c2, categories.get(c2) + scores.get(choices[i]));
-            }
-        }
-        
-        // 유형별 더 큰 점수로 저장하되, 같은 경우 사전 순으로 빠른 유형으로 저장
         String answer = "";
-        answer += (categories.get("R") < categories.get("T")) ? "T" : "R";
-        answer += (categories.get("C") < categories.get("F")) ? "F" : "C";
-        answer += (categories.get("J") < categories.get("M")) ? "M" : "J";
-        answer += (categories.get("A") < categories.get("N")) ? "N" : "A";
         
-        return answer;
+        /*
+        1번 지표	라이언형(R), 튜브형(T)
+        2번 지표	콘형(C), 프로도형(F)
+        3번 지표	제이지형(J), 무지형(M)
+        4번 지표	어피치형(A), 네오형(N)
+        */
+        
+        // 선택에 따른 성격 유형 점수 저장
+        Map<Integer, Integer> scores = Map.of(
+                1, 3,
+                2, 2,
+                3, 1,
+                4, 0,
+                5, 1,
+                6, 2,
+                7, 3
+        );
+        
+        // 유형별 점수 저장
+        Map<String, Integer> categories = new HashMap<>();
+    
+        for(int i = 0; i < survey.length; i++){
+            String c1 = survey[i].split("")[0];
+            String c2 = survey[i].split("")[1];
+            int choice = choices[i];
+            
+            // 비동의 선택
+            if(choice <= 3)         categories.put(c1, categories.getOrDefault(c1, 0) + scores.get(choice));
+            // 동의 선택
+            else if(choice >= 4)    categories.put(c2, categories.getOrDefault(c2, 0) + scores.get(choice));
+        }
+        
+        System.out.println(categories);
+        
+        // T가 R보다 큰 경우에만 T로 하고, 같거나(사전순) 작은 경우엔 R로 설정
+        String rt = (categories.getOrDefault("R", 0) < categories.getOrDefault("T", 0)) ? "T" : "R";
+        String cf = (categories.getOrDefault("C", 0) < categories.getOrDefault("F", 0)) ? "F" : "C";
+        String jm = (categories.getOrDefault("J", 0) < categories.getOrDefault("M", 0)) ? "M" : "J";
+        String an = (categories.getOrDefault("A", 0) < categories.getOrDefault("N", 0)) ? "N" : "A";
+        
+        return rt + cf + jm + an;
     }
 }
