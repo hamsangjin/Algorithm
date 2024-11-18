@@ -2,34 +2,38 @@ import java.util.*;
 
 class Solution {
     public int[] solution(String[] id_list, String[] report, int k) {
-        int[] answer = new int[id_list.length];
+        // 한 명이 여러명을 신고할 순 있지만 1회로 처리
+        // k번 이상 신고된 유저는 정지당함
+        // 그래서 본인이 신고한 유저가 정지된 횟수를 각각 리턴해주면 됨
+        int n = id_list.length;
         
-        // hashMap<String, Set<String> 묶어서 저장 - set으로 중복처리
-        Map<String, Set<String>> map = new HashMap<>();
-    
-        for(String id : id_list){
-            map.put(id, new HashSet<>());
-        }
+        Map<String, Set<String>> rMap = new HashMap<>();
+        for(String id : id_list)        rMap.put(id, new HashSet<>());
         
-        // 이부분 getOrDefault 사용 방법 !?
         // 누가 누구를 신고했는지 저장
         for(String r : report){
-            String[] temp = r.split(" ");
-            map.get(temp[0]).add(temp[1]);
+            String[] rs = r.split(" ");
+            
+            rMap.get(rs[0]).add(rs[1]);
         }
         
-        // 유저별 신고당한 횟수 카운트
-        Map<String, Integer> reportCountMap = new HashMap<>();
+        
+        // 유저별 신고당한 횟수 저장
+        Map<String, Integer> cMap = new HashMap<>();
         for(String id : id_list){
-            for(String str : map.get(id)){
-                reportCountMap.put(str, reportCountMap.getOrDefault(str, 0) + 1);
+            // i번째 id가 신고한 사람들 불러오기
+            for(String user : rMap.get(id)){
+                // 그 사람들 + 1
+                cMap.put(user, cMap.getOrDefault(user, 0) + 1);
             }
         }
         
-        // key값 별로 신고한 사람들이 처리된 횟수 확인해서 answer에 반영
-        for(int i = 0; i < id_list.length; i++){
-            for(String str : map.get(id_list[i])){
-                if(reportCountMap.get(str) >= k)    answer[i] ++;
+        // id_list를 돌면서 
+        // 본인이 신고한 사람이 k 이상의 신고건을 받은지 확인
+        int[] answer = new int[n];
+        for(int i = 0; i < n; i++){
+            for(String user : rMap.get(id_list[i])){
+                if(cMap.get(user) >= k)    answer[i] ++;
             }
         }
         
