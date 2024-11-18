@@ -2,40 +2,41 @@ import java.util.*;
 
 class Solution {
     public int[] solution(String[] id_list, String[] report, int k) {
-
-        Map<String, HashSet<String>> map = new HashMap<>(); // 신고당한 user - 신고한 user
-        Map<String, Integer> nameMap = new HashMap<>(); // 이용자id-신고당한횟수
-
-        // 값 초기화
+        // 한 명이 여러명을 신고할 순 있지만 1회로 처리
+        // k번 이상 신고된 유저는 정지당함
+        // 그래서 본인이 신고한 유저가 정지된 횟수를 각각 리턴해주면 됨
         int n = id_list.length;
-        for(int i = 0; i < n; i++) {
-            map.put(id_list[i], new HashSet<>());
-            nameMap.put(id_list[i], i);
+        
+        Map<String, Set<String>> rMap = new HashMap<>();
+        for(String id : id_list)        rMap.put(id, new HashSet<>());
+        
+        // 누가 누구를 신고했는지 저장
+        for(String r : report){
+            String[] rs = r.split(" ");
+            
+            rMap.get(rs[0]).add(rs[1]);
         }
 
-        // 신고 목록 돌면서 map 채워주기
-        for(String s : report) {
-            String[] str = s.split(" ");
-            map.get(str[1]).add(str[0]);
-        }
-
-      
-        int[] result = new int[n];
-
-        // 나 : muzi 
-        // 유저들 돌아
-        for(int i = 0; i < id_list.length; i++) {
-            // 본인을 신고한 리스트 받아와
-            // 길동과 무개
-            HashSet<String> emailSet = map.get(id_list[i]); // 신고한id 저장
-            // 본인이 k개 이상으로 신고받았어 ?
-            if(emailSet.size() >= k) {
-                for(String name : emailSet) { // 신고한id 에게 이메일 전송
-                    result[nameMap.get(name)]++;
-                }
+        
+        // 유저별 신고당한 횟수 저장
+        Map<String, Integer> cMap = new HashMap<>();
+        for(String id : id_list){
+            // i번째 id가 신고한 사람들 불러오기
+            for(String user : rMap.get(id)){
+                // 그 사람들 + 1
+                cMap.put(user, cMap.getOrDefault(user, 0) + 1);
             }
         }
-
-        return result;
+        
+        // id_list를 돌면서 
+        // 본인이 신고한 사람이 k 이상의 신고건을 받은지 확인
+        int[] answer = new int[n];
+        for(int i = 0; i < n; i++){
+            for(String user : rMap.get(id_list[i])){
+                if(cMap.get(user) >= k)    answer[i] ++;
+            }
+        }
+        
+        return answer;
     }
 }
